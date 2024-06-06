@@ -1,6 +1,16 @@
 import React from 'react';
 
-const Login = () => {
+const LoginFormSubmit = (e) => {
+    e.preventDefault(); 
+    console.log("Login form has been submitted!");
+    
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    
+    console.log("Email:", email);
+    console.log("Password:", password);
+};
+    
     return (
         <div>
             <span>Login</span>
