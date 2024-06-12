@@ -1,17 +1,22 @@
 import React from 'react';
 import booksData from "../data/books";
+import { BrowserRouter}  from "react-router-dom";
 
+<BrowserRouter>
+<App />
+</BrowserRouter>
 
 const Home = () => {
       
-       const [books, setBooks] = useState([]);
+       const [books, bookSet] = useState([]);
 
        useEffect(() => {
            
-           setBooks(booksData);
-       }, []);
+           bookSet(books);
+       });
 
     return (
+        
         <span>
             <span>Home</span>
             <header>

@@ -3,7 +3,7 @@ import React from 'react';
 const Create = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log('Form has been submitted successfully..');
+        console.log('Form has been submitted successfully.');
         console.log('Title:', e.target.title.value);
         console.log('Author:', e.target.author.value);
         console.log('Image URL:', e.target.image.value);

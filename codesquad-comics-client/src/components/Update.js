@@ -4,11 +4,11 @@ import booksData from "../data/booksData";
 const Update = () => {
     const id = 1; // Example ID, adjust this as needed
 
-    const [book, setBook] = useState({});
+    const [book, bookSet] = useState({});
 
     useEffect(() => {
         const foundBook = booksData.find(book => book.id === id);
-        setBook(foundBook);
+        bookSet(foundBook);
     }, [id]);
 
     const handleFormSubmit = (e) => {
