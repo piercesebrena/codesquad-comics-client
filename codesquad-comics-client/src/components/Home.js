@@ -1,19 +1,41 @@
 import React from 'react';
 import booksData from "../data/books";
 import { BrowserRouter}  from "react-router-dom";
+const PORT= 8080;
 
 <BrowserRouter>
-<App />
+<App/>
 </BrowserRouter>
 
 const Home = () => {
       
-       const [books, bookSet] = useState([]);
-
-       useEffect(() => {
-           
-           bookSet(books);
-       });
+    const Home = () => {
+        const [allBooks, setAllBooks] = useState([]);
+        const [errorMessage, setErrorMessage] = useState('');
+    
+        useEffect(() => {
+            fetch("http://localhost:8080/api/books", {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json",
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.statusCode === 8080) {
+                    setAllBooks(result.data);
+                } else {
+                    throw new Error(result.error.message);
+                }
+            })
+            .catch(error => {
+                setErrorMessage(error.message);
+            });
+        }, []);
+    
+        console.log("allBooks:", allBooks);
+        console.log("errorMessage:", errorMessage);
+    }
 
     return (
         
