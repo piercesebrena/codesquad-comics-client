@@ -1,7 +1,14 @@
-  import React from 'react';
-  import booksData from "../data/books";
-  
-  const Admin = () => {
+import React, { useState, useEffect } from 'react';
+import React from 'react';
+import booksData from "../data/books";
+
+const Admin = () => {
+  // Create state for books
+const [books, bookSets] = useState([]);
+
+  useEffect(() => {
+    bookSets(booksData);
+  }, []);
     return (
       <div>
         <span>Admin</span>  
@@ -30,9 +37,6 @@
         <h3><strong>COMIC TITLES</strong></h3>
   
         <table>
-          {/* Commented out existing <tr> elements */}
-          {/* <tr>...</tr> for all 12 books */}
-          {/* Replace with mapping through booksData */}
           <tbody>
             {booksData.map((book, index) => (
               <tr key={index}>

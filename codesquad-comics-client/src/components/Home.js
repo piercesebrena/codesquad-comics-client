@@ -4,14 +4,13 @@ import booksData from "../data/books";
 
 const Home = () => {
       
-       const [books, setBooks] = useState([]);
+const [books, setBooks] = useState([]);
 
-       useEffect(() => {
+useEffect(() => {
            
-           setBooks(booksData);
-       }, []);
-
-    return (
+ setBooks(booksData);
+}, []);
+return (
         <span>
             <span>Home</span>
             <header>
