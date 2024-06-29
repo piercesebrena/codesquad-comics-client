@@ -9,7 +9,6 @@ const PORT= 8080;
 
 const Home = () => {
       
-    const Home = () => {
         const [allBooks, setAllBooks] = useState([]);
         const [errorMessage, setErrorMessage] = useState('');
     
@@ -85,7 +84,9 @@ const Home = () => {
             </button>
             <br /><br />
         </span>
-    );
-}
+         
+         );
+    
+
 
 export default Home;

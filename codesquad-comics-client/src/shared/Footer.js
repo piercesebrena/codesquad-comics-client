@@ -34,16 +34,16 @@ const Footer = () => {
        
         <div>
             <h3 class="white-text"><strong>A PRODUCT OF</strong></h3>
-        <a href="#" target="_blank">
+        <a href="#" target="_blank"/>
         <img src="./public/images/CodeSquad-logo-b.png" alt="CodeSquad Footer Logo" class="footer-logo"/>   
         </div>
     
 
     </footer>
-
-
-      </div>
+    
+    </div>
     );
+};
   
 
 

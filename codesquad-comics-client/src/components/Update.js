@@ -1,89 +1,80 @@
 import React, { useState, useEffect } from 'react';
-import booksData from "../data/booksData";
+import { useParams, useNavigate } from 'react-router-dom';
 
-const Update = () => {
-    const id = 1; // Example ID, adjust this as needed
+function Update() {
+  const { bookId } = useParams();
+  const navigate = useNavigate();
+  const [book, setBook] = useState({
+    title: '',
+    author: '',
+    
+  });
 
-    const [book, bookSet] = useState({});
+  useEffect(() => {
+    // Fetch book details when the component mounts
+    fetch(`http://localhost:8080/api/books/${bookId}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then((data) => {
+        console.log('Book data:', data);
+        setBook(data);
+      })
+      .catch((error) => console.error('Error fetching book:', error));
+  }, [bookId]);
 
-    useEffect(() => {
-        const foundBook = booksData.find(book => book.id === id);
-        bookSet(foundBook);
-    }, [id]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form has been submitted');
-        console.log('Title:', e.target.title.value);
-        console.log('Author:', e.target.author.value);
-        console.log('Publisher:', e.target.publisher.value);
-        console.log('Genre:', e.target.genre.value);
-        console.log('Number of pages:', e.target['number of pages'].value);
-        console.log('Rating:', e.target.rating.value);
-        console.log('Synopsis:', e.target.synopsis.value);
+    // Create the body object with form data
+    const body = {
+      title: e.target.title.value,
+      author: e.target.author.value,
+      // Add other fields as necessary
     };
 
-    return (
-        <div>
-            <span>Update</span>
-            <header>
-                {/* Start nav */}
-                <nav className="nav-container">
-                    <a href="index.html">
-                        <img src="./public/images/CodeSquad-Comics-logo.png" alt="codesquad comics logo" className="logo" />
-                    </a>
-                    {/* Hamburger menu */}
-                    <span>
-                        <a href="javascript:void(0);" className="nav-menu-icon"><i className="fa fa-bars"></i></a>
-                    </span>
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="about.html">ABOUT</a></li>
-                        <li><a href="login.html">LOGIN</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <div className="content-box">
-                <h1>UPDATE COMIC</h1>
-                <form onSubmit={handleFormSubmit}>
-                    <label htmlFor="title">Title:</label>
-                    <input type="text" id="title" name="title" defaultValue={book.title} placeholder="Enter the title" required />
-                    <br />
-                    <label htmlFor="author">Author:</label>
-                    <input type="text" id="author" name="author" defaultValue={book.author} placeholder="Enter the author" required />
-                    <br />
-                    <label htmlFor="publisher">Publisher:</label>
-                    <select id="publisher" name="publisher" defaultValue={book.publisher} required>
-                        <option value="">Select</option>
-                        <option value="BOOM! Box">BOOM! Box</option>
-                        <option value="DC Comics">DC Comics</option>
-                        <option value="Harry N. Abrams">Harry N. Abrams</option>
-                        <option value="Icon Books">Icon Books</option>
-                        <option value="Image Comics">Image Comics</option>
-                        <option value="Marvel">Marvel</option>
-                        <option value="Simon & Schuster">Simon & Schuster</option>
-                        <option value="Top Shelf Productions">Top Shelf Productions</option>
-                        <option value="VIZ Media LLC">VIZ Media LLC</option>
-                    </select>
-                    <br />
-                    <label htmlFor="genre">Genre:</label>
-                    <input type="text" id="genre" name="genre" defaultValue={book.genre} placeholder="Enter the genre" required />
-                    <br />
-                    <label htmlFor="number of pages">Number of pages:</label>
-                    <input type="text" id="number-of-pages" name="number of pages" defaultValue={book.pages} placeholder="Enter the number of pages" required />
-                    <br />
-                    <label htmlFor="rating">Rating:</label>
-                    <input type="text" id="rating" name="rating" defaultValue={book.rating} placeholder="Enter the rating" required />
-                    <br />
-                    <label htmlFor="synopsis">Synopsis:</label>
-                    <input type="text" id="synopsis" name="synopsis" defaultValue={book.synopsis} placeholder="Enter the synopsis" required />
-                    <br />
-                    <button className="yellow-button" type="submit">Submit</button>
-                </form>
-            </div>
-            <br />
-        </div>
-    );
+    // Making a PUT request to update the book
+    fetch(`http://localhost:8080/api/books/edit/${bookId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then((data) => {
+        console.log('Update successful:', data);
+        setBook(data);
+        navigate('/admin');
+      })
+      .catch((error) => console.error('Error updating book:', error));
+  };
+  return (
+    <div>
+      <h1>Update Book</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Title:
+          <input type="text" name="title" value={book.title} onChange={(e) => setBook({ ...book, title: e.target.value })} required />
+        </label>
+        <br />
+        <label>
+          Author:
+          <input type="text" name="author" value={book.author} onChange={(e) => setBook({ ...book, author: e.target.value })} required />
+        </label>
+        <br />
+        <button type="submit">Update Book</button>
+      </form>
+    </div>
+  );
 }
 
 export default Update;

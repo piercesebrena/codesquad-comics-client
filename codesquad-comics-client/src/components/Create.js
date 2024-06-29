@@ -32,98 +32,42 @@ const Create = () => {
       navigate("/admin"); // Navigate to the admin page
     })
     .catch(error => {
-      console.error('Create error:', error); // Log error message
+      console.error('Error creating book:', error); // Log error message
     });
   };
 
   return (
     <div>
       <span>Create</span>
-      <header>
-        {/* Start nav */}
-        <nav className="nav-container">
-          <a href="index.html">
-            <img src="./public/images/CodeSquad-Comics-logo.png" alt="codesquad comics logo" className="logo" />
-          </a>
-          <span>
-            <a href="javascript:void(0);" className="nav-menu-icon"><i className="fa fa-bars"></i></a>
-          </span>
-          <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-            <li><a href="login.html">LOGIN</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input type="text" id="title" name="title" required />
-        </div>
-        <div>
-          <label htmlFor="author">Author:</label>
-          <input type="text" id="author" name="author" required />
-        </div>
-        <div>
-          <label htmlFor="image">Image URL:</label>
-          <input type="text" id="image" name="image" required />
-        </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <textarea id="description" name="description" required></textarea>
-        </div>
+      <span>
+      <h1>Create Book</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Title:
+          <input type="text" name="title" required />
+        </label>
+        <br />
+        <label>
+          Author:
+          <input type="text" name="author" required />
+        </label>
+        <br />
+        <label>
+          Genre:
+          <input type="text" name="genre" required />
+        </label>
+        <br />
+        <label>
+          Publication Date:
+          <input type="date" name="publicationDate" required />
+        </label>
+        <br />
+        {/* Add other fields here as necessary */}
         <button type="submit">Create</button>
       </form>
-    </div>
+    </span>
+  </div>
   );
-};
-
-export default Create;
-
-
-    return (
-        <div>
-            <span>Create</span>
-            <header>
-                {/* Start nav */}
-                <nav className="nav-container">
-                    <a href="index.html">
-                        <img src="./public/images/CodeSquad-Comics-logo.png" alt="codesquad comics logo" className="logo" />
-                    </a>
-                    {/* Hamburger menu */}
-                    <span>
-                        <a href="javascript:void(0);" className="nav-menu-icon"><i className="fa fa-bars"></i></a>
-                    </span>
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="about.html">ABOUT</a></li>
-                        <li><a href="login.html">LOGIN</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <form onSubmit={handleFormSubmit}>
-                <div>
-                    <label htmlFor="title">Title:</label>
-                    <input type="text" id="title" name="title" required />
-                </div>
-                <div>
-                    <label htmlFor="author">Author:</label>
-                    <input type="text" id="author" name="author" required />
-                </div>
-                <div>
-                    <label htmlFor="image">Image URL:</label>
-                    <input type="text" id="image" name="image" required />
-                </div>
-                <div>
-                    <label htmlFor="description">Description:</label>
-                    <textarea id="description" name="description" required></textarea>
-                </div>
-                <button type="submit">Create</button>
-            </form>
-        </div>
-    );
-};
+}
 
 export default Create;

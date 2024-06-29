@@ -7,7 +7,7 @@
       <div>
         <span>Admin</span>  
         <header>
-          {/* <!-- Start nav --> */}
+          
           <nav className="nav-container">
             <a href="index.html">
               <img src="./public/images/CodeSquad-Comics-logo.png" alt="codesquad comics logo" className="logo"></img>   

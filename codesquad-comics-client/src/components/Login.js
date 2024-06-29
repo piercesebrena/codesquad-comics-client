@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoginFormSubmit = (e) => {
+const Login = (e) => {
     e.preventDefault(); 
     console.log("Login form has been submitted!");
     
@@ -12,25 +12,6 @@ const LoginFormSubmit = (e) => {
 };
     
     return (
-        <div>
-            <span>Login</span>
-            <header>
-                {/* <!-- Start nav --> */}
-                <nav className="nav-container">
-                    <a href="index.html">
-                        <img src="./public/images/CodeSquad-Comics-logo.png" alt="codesquad comics logo" className="logo" />
-                    </a>
-                    {/* <!-- Hamburger menu --> */}
-                    <span>
-                        <a href="javascript:void(0);" className="nav-menu-icon"><i className="fa fa-bars"></i></a>
-                    </span>
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="about.html">ABOUT</a></li>
-                        <li><a href="login.html">LOGIN</a></li>
-                    </ul>
-                </nav>
-            </header>
             <span className="content-box">
                 <h1><strong>LOGIN</strong></h1>
                 <form action="#">
@@ -43,9 +24,9 @@ const LoginFormSubmit = (e) => {
                     <button type="submit">Submit</button>
                 </form>
             </span>
-        </div>
+    
     );
-}
+    
 
 export default Login;
 
